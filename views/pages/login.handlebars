@@ -1,0 +1,19 @@
+<article>
+    <h1>Login</h1>
+    <form action="/login" method="post">
+        <div class="formGroup">
+            <label for="username">Username</label>
+            <input name="username" id="username" type="text" placeholder="username"/>
+        </div>
+        <div class="formGroup">
+            <label for="password">Password</label>
+            <input name="password" id="password" type="password" placeholder="password"/>
+        </div>
+        <input type="submit"/>
+    </form>
+    {{#if error}}
+        <div id="errorContainer">
+            <div id="errorText">{{error}}</div>
+        </div>
+    {{/if}}
+</article>
