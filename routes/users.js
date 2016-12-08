@@ -57,7 +57,7 @@ router.get('/:username', authenticate, (req, res) => {
 });
 
 /**
- * @router("/users/add")
+ * @route("/users/add")
  * @method("POST")
  *
  * Adds a user to the collection.
@@ -87,5 +87,41 @@ router.post('/add', authenticate, (req, res) => {
             res.send(err);
         });
 });
+
+/**
+ * @route("/users/update/:username")
+ * @method("PUT")
+ *
+ * Updates the user given by the username with the details provided.
+ */
+router.put('/update/:username', authenticate, (req, res) => {
+    // Ensure that the user is an admin.
+    if (req.user.roles.indexOf("admin") == -1) {
+        res.send("Not authorized to add user");
+        return;
+    }
+
+    var propsToUpdate = {
+        roles: req.body.roles,
+        password: req.body.password
+    };
+
+    // Delete any properties that are undefined (don't want to update those)
+    Object.keys(propsToUpdate).forEach( (key) => {
+        if (propsToUpdate[key] === undefined) {
+            delete propsToUpdate[key];
+        }
+    });
+
+    userMethods.updateUser(req.params.username, propsToUpdate)
+        .then( (updatedUser) => {
+            res.send(updatedUser);
+        })
+        .catch( (err) => {
+            console.log(err);
+            res.send(err);
+        });
+});
+
 
 module.exports = router;

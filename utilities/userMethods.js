@@ -68,8 +68,43 @@ addUser = (user) => {
     });
 };
 
+updateUser = (username, propsToUpdate) => {
+    return new Promise( (resolve, reject) => {
+        users()
+            .then( (userCollection) => {
+                userCollection
+                    .updateOne(
+                        {
+                            username: username
+                        },
+                        {
+                            $set: propsToUpdate
+                        })
+                    .then( (r) => {
+                        if (r.result.n === 0) {
+                            reject("No user exists with username " + username);
+                        } else {
+                            return userCollection.findOne({username: username});
+                        }
+                    })
+                    .then( (updatedUser) => {
+                        resolve(updatedUser);
+                    })
+                    .catch( (err) => {
+                        console.log(err);
+                        reject(err);
+                    });
+            })
+            .catch( (err) => {
+                console.log(err);
+                reject(err);
+            });
+    });
+};
+
 module.exports = {
     getUserByUsername: getUserByUsername,
     getAllUsers: getAllUsers,
-    addUser: addUser
+    addUser: addUser,
+    updateUser: updateUser
 };
