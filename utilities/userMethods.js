@@ -21,20 +21,24 @@ getUserByUsername = (username) => {
     });
 };
 
-hasRole = (username, role) => {
-    getUserByUsername(username)
-        .then( (user) => {
-            if (user) {
-                return user.roles.indexOf(role) > 0;
-            }
-        })
-        .catch( (err) => {
-            console.log(err);
-            return false;
-        });
+getAllUsers = () => {
+    return new Promise( (resolve, reject) => {
+        users()
+            .then( (userCollection) => {
+                return userCollection.find().toArray();
+            })
+            .then( (users) => {
+                console.log(users);
+                resolve(users);
+            })
+            .catch( (err) => {
+                console.log(err);
+                reject(err);
+            });
+    });
 };
 
 module.exports = {
     getUserByUsername: getUserByUsername,
-    hasRole: hasRole
+    getAllUsers: getAllUsers
 };
