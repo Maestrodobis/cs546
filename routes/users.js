@@ -56,4 +56,36 @@ router.get('/:username', authenticate, (req, res) => {
         });
 });
 
+/**
+ * @router("/users/add")
+ * @method("POST")
+ *
+ * Adds a user to the collection.
+ */
+router.post('/add', authenticate, (req, res) => {
+    // Ensure that the user is an admin.
+    if (req.user.roles.indexOf("admin") == -1) {
+        res.send("Not authorized to add user");
+        return;
+    }
+
+    var user = {
+        username: req.body.username,
+        password: req.body.password,
+        roles: req.body.roles
+    };
+
+    console.log(user);
+
+    userMethods.addUser(user)
+        .then( (newUser) => {
+            console.log("Added user ", user.username);
+            res.send(newUser);
+        })
+        .catch( (err) => {
+            console.log(err);
+            res.send(err);
+        });
+});
+
 module.exports = router;

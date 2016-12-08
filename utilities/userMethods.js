@@ -1,4 +1,5 @@
 const users = require('../mongoCollections').users;
+const uuid = require('node-uuid');
 
 getUserByUsername = (username) => {
     return new Promise( (resolve, reject) => {
@@ -38,7 +39,37 @@ getAllUsers = () => {
     });
 };
 
+addUser = (user) => {
+    return new Promise( (resolve, reject) => {
+        console.log(user);
+
+        users()
+            .then( (userCollection) => {
+                userCollection
+                    .insertOne(user)
+                    .then( (newUserInfo) => {
+                        return newUserInfo.insertedId;
+                    })
+                    .then( (id) => {
+                        return userCollection.findOne({ _id: id});
+                    })
+                    .then( (newUser) => {
+                        resolve(newUser);
+                    })
+                    .catch( (err) => {
+                        console.log(err);
+                        reject(err);
+                    });
+            })
+            .catch( (err) => {
+                console.log(err);
+                reject(err);
+            });
+    });
+};
+
 module.exports = {
     getUserByUsername: getUserByUsername,
-    getAllUsers: getAllUsers
+    getAllUsers: getAllUsers,
+    addUser: addUser
 };
