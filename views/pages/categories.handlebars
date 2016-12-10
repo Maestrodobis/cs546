@@ -1,0 +1,29 @@
+<article class="inventory">
+        <h1>Your inventory</h1>
+        <table class="table" id="localstorage-data">
+            <thead>
+            <tr>
+                <th>Categories</th>
+            </tr>
+            </thead>
+            <tbody>
+                {{#each categories}}
+                    <tr class="categoryRow">
+                        <td>{{categoryName}}</td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <form action="/categories/add" method="post">
+            <div class="formGroup">
+                <label for="categoryName">Name</label>
+                <input name="categoryName" id="categoryName" type="text" placeholder="category name"/>
+            </div>
+            <input type="submit"/>
+        </form>
+    {{#if error}}
+        <div id="errorContainer">
+            <div id="errorText">{{error}}</div>
+        </div>
+    {{/if}}
+</article>

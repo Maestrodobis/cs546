@@ -1,3 +1,28 @@
-<article>
-
+<article class="item">
+    <h1 class ="itemName" >{{item.itemName}}</h1>
+        <p class = "category">{{item.category}}</p>
+        <p class = "quantity"> {{item.quantity}}</p>
+        <p class = "price">{{item.price}}</p>
+        <p class = "description">{{item.description}}</p>
+    <form action="/items/update" method="put">
+            {{#if admin}}
+            <div class="formGroup">
+                <label for="itemName">Name</label>
+                <input name="itemName" id="itemName" type="text" placeholder="item name"/>
+            </div>
+            <div class="formGroup">
+                <label for="Category">Category</label>
+                <input name="category" id="category" type="text" placeholder="clothing, kitchenware, electronics, etc."/>
+            </div>
+            <div class="formGroup">
+                <label for="Price">Price</label>
+                <input name="price" id="price" min ="0" step=".01" type="number" placeholder="0.00"/>
+            </div>
+            {{/if}}
+            <div class="formGroup">
+                <label for="quantity">Quantity</label>
+                <input name="quantity" id="quantity" min ="0" type="number" placeholder="0"/>
+            </div>
+            <input type="submit"/>
+    </form>      
 </article>

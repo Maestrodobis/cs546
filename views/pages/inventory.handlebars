@@ -1,3 +1,49 @@
-<article>
-
+<article class="inventory">
+        <h1>Your inventory</h1>
+        <table class="table" id="localstorage-data">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Quantity</th>
+            </tr>
+            </thead>
+            <tbody>
+                {{#each items}}
+                    <tr class="itemRow">
+                        <td>{{itemName}}</td>
+                        <td>{{category}}</td>
+                        <td>{{price}}</td>
+                        <td>{{quantity}}</td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        {{#if admin}}
+        <form action="/items/add" method="post">
+            <div class="formGroup">
+                <label for="itemName">Name</label>
+                <input name="itemName" id="itemName" type="text" placeholder="item name"/>
+            </div>
+            <div class="formGroup">
+                <label for="Category">Category</label>
+                <input name="category" id="category" type="text" placeholder="clothing, kitchenware, electronics, etc."/>
+            </div>
+            <div class="formGroup">
+                <label for="quantity">Quantity</label>
+                <input name="quantity" id="quantity" min ="0" type="number" placeholder="0"/>
+            </div>
+            <div class="formGroup">
+                <label for="price">Price</label>
+                <input name="price" id="price" min ="0" step=".01" type="number" placeholder="0.00"/>
+            </div>
+            <input type="submit"/>
+        </form>
+        {{/if}}
+    {{#if error}}
+        <div id="errorContainer">
+            <div id="errorText">{{error}}</div>
+        </div>
+    {{/if}}
 </article>
