@@ -22,8 +22,7 @@ router.get('/', authenticate, (req, res) => {
             users.forEach( (user) => {
                 delete user.password;
             });
-
-            res.send(users);
+            res.render("pages/users", {"users":users});
         })
         .catch( (err) => {
             console.log(err);
@@ -47,8 +46,7 @@ router.get('/:username', authenticate, (req, res) => {
     userMethods.getUserByUsername(req.params.username)
         .then( (user) => {
             delete user.password;
-
-            res.send(user);
+            res.render("pages/user", {"user":user});
         })
         .catch( (err) => {
             console.log(err);

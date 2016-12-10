@@ -8,10 +8,40 @@ const bcrypt = require('bcrypt');
 const seedUsers = [
     {
         "username":"admin",
-        "password":"$2a$04$Fvp1Udr/5BX0sWVakNuFy.P82Ngd7gqiwfye7PaHp4mkifT66oBSO",
+        "firstName":"admin",
+        "lastName":"admin",
+        "password":"$2a$04$Fvp1Udr/5BX0sWVakNuFy.P82Ngd7gqiwfye7PaHp4mkifT66oBSO", //password
         "roles":"admin"
+    },
+    {
+        "username":"frodo",
+        "firstName":"Frodo",
+        "lastName":"Baggins",
+        "password":"$2a$04$Fvp1Udr/5BX0sWVakNuFy.P82Ngd7gqiwfye7PaHp4mkifT66oBSO", //password
+        "roles":"employee"
+    },
+    {
+        "username":"sam",
+        "firstName":"Samwise",
+        "lastName":"Gamgee",
+        "password":"$2a$04$Fvp1Udr/5BX0sWVakNuFy.P82Ngd7gqiwfye7PaHp4mkifT66oBSO", //password
+        "roles":"employee"
+    },
+    {
+        "username":"superWizard2000",
+        "firstName":"Gandolf",
+        "lastName":"Grey",
+        "password":"$2a$04$Fvp1Udr/5BX0sWVakNuFy.P82Ngd7gqiwfye7PaHp4mkifT66oBSO", //password
+        "roles":"employee"
+    },
+    {
+        "username":"gollum",
+        "firstName":"Smeagol",
+        "lastName":"none",
+        "password":"$2a$04$Fvp1Udr/5BX0sWVakNuFy.P82Ngd7gqiwfye7PaHp4mkifT66oBSO", //password
+        "roles":"employee"
     }
-]
+];
 
 module.exports = function(){
     dbConnection().then(db => {

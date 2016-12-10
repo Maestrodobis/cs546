@@ -45,12 +45,13 @@ let exportedMethods = {
     addUser(user) {
         if (!user.username) return Promise.reject("No username provided!");
         if (!user.password) return Promise.reject("No password provided!");
+        if (!user.firstName) return Promise.reject("No firstName provided!");
+        if (!user.lastName) return Promise.reject("No lastName provided!");
         if (!user.roles) return Promise.reject("No role provided");
         //check for uniqueness of username needed
         return new Promise( (resolve, reject) => {
             
-            console.log(user);
-
+            // console.log(user);
 
             users()
                 .then( (userCollection) => {
