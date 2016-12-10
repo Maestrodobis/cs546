@@ -17,10 +17,10 @@
                     <tr data-href="/" class="itemRow">
                         <td>{{name}}</td>
                         <td>{{category}}</td>
-                        <td>{{price}}</td>
+                        <td>${{price}}</td>
                         <td>{{quantity}}</td>
                         {{#if admin}}
-                            <td><button type="submit" value="{{_id}}" id="deleteItem">Delete</button></td>
+                            <td><button type="submit" value="{{_id}}" id="deletebuttons">Delete</button></td>
                         {{/if}}
                     </tr>
                 {{/each}}
@@ -33,7 +33,7 @@
                 <input name="itemName" id="itemName" type="text" placeholder="item name"/>
             </div>
             <div class="formGroup">
-                <label for="Category">Category</label>
+                <label for="category">Category</label>
                 <input name="category" id="category" type="text" placeholder="clothing, kitchenware, electronics, etc."/>
             </div>
             <div class="formGroup">
@@ -41,8 +41,8 @@
                 <textarea  id="description" name="description"></textarea>
             </div>
             <div class="formGroup">
-                <label for="quantity">Quantity</label>
-                <input name="quantity" id="quantity" min ="0" type="number" placeholder="0"/>
+                <label for="itemQuantity">Quantity</label>
+                <input name="itemQuantity" id="itemQuantity" min ="0" type="number" placeholder="0"/>
             </div>
             <div class="formGroup">
                 <label for="price">Price</label>

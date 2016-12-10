@@ -2,13 +2,13 @@
     <h1 class ="itemName" >{{item.name}}</h1>
         <p class = "category">{{item.category}}</p>
         <p class = "quantity"> {{item.quantity}}</p>
-        <p class = "price">{{item.price}}</p>
+        <p class = "price">${{item.price}}</p>
         <p class = "description">{{item.description}}</p>     
     <form id="updateItemForm">
             {{#if admin}}
             <div class="formGroup">
-                <label for="itemName">Name</label>
-                <input name="itemName" id="itemName" type="text" placeholder="item name"/>
+                <label for="name">Name</label>
+                <input name="name" id="name" type="text" placeholder="item name"/>
             </div>
             <div class="formGroup">
                 <label for="category">Category</label>

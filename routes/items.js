@@ -38,7 +38,7 @@ router.get('/:itemName', (req, res) => {
     
     itemMethods.getItemByName(req.params.itemName).then((item) => {
     	if (req.user.roles.indexOf("admin") == -1) {
-        res.render("pages/item", {item: item, admin: 0, partial:"inventory-scripts"});
+            res.render("pages/item", {item: item, admin: 0, partial:"inventory-scripts"});
         } else{
             res.render("pages/item", {item: item, admin: 1, partial:"inventory-scripts"});
         }
@@ -81,7 +81,7 @@ router.post('/add', authenticate, (req, res) => {
 	+ date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
 
     let item = {
-        itemName: req.body.itemName,
+        name: req.body.itemName,
         description: req.body.description,
         quantity: req.body.itemQuantity,
         price: req.body.price,
