@@ -22,7 +22,7 @@ router.get('/', authenticate, (req, res) => {
             users.forEach( (user) => {
                 delete user.password;
             });
-            res.render("pages/users", {"users":users});
+            res.render("pages/users", {"users":users,partial:"users-scripts"});
         })
         .catch( (err) => {
             console.log(err);
