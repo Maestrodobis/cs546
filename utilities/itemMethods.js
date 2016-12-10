@@ -27,7 +27,7 @@ let exportedMethods = {
 
 	getAllItems() {
 		return items().then((itemCollection) => {
-			itemCollection.find().toArray();
+			return itemCollection.find().toArray();
 		});
 	},
 

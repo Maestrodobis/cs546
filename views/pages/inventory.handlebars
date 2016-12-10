@@ -14,11 +14,14 @@
             </thead>
             <tbody>
                 {{#each items}}
-                    <tr class="itemRow">
-                        <td>{{itemName}}</td>
+                    <tr data-href="/" class="itemRow">
+                        <td>{{name}}</td>
                         <td>{{category}}</td>
                         <td>{{price}}</td>
                         <td>{{quantity}}</td>
+                        {{#if admin}}
+                            <td><button type="submit" value="{{_id}}" id="deleteItem">Delete</button></td>
+                        {{/if}}
                     </tr>
                 {{/each}}
             </tbody>
@@ -32,6 +35,10 @@
             <div class="formGroup">
                 <label for="Category">Category</label>
                 <input name="category" id="category" type="text" placeholder="clothing, kitchenware, electronics, etc."/>
+            </div>
+            <div class="formGroup">
+                <label for="description">Description</label>
+                <textarea  id="description" name="description"></textarea>
             </div>
             <div class="formGroup">
                 <label for="quantity">Quantity</label>

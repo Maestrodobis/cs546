@@ -12,9 +12,16 @@ const itemMethods = require('../utilities/itemMethods');
 //if and when we implement departments for users we may need to do some check here so users can only see/edit items in their department
 
 router.get('/', (req, res) => {
-
     itemMethods.getAllItems().then((items) => {
-    	res.status(200).json(items);
+    	// res.status(200).json(items);
+        console.log(items);
+        if (req.user.roles.indexOf("admin") == -1) {
+            console.log(items);
+            res.render("pages/inventory", {items: items, admin: 0, partial:"inventory-scripts" });
+        } else{
+            console.log(items);
+            res.render("pages/inventory", {items: items, admin: 1, partial:"inventory-scripts"});
+        }
     }).catch( (err) => {
     	res.status(404).json({error: err});
     });
@@ -30,7 +37,11 @@ router.get('/', (req, res) => {
 router.get('/:itemName', (req, res) => {
     
     itemMethods.getItemByName(req.params.itemName).then((item) => {
-    	res.status(200).json(item);
+    	if (req.user.roles.indexOf("admin") == -1) {
+        res.render("pages/item", {item: item, admin: 0, partial:"inventory-scripts"});
+        } else{
+            res.render("pages/item", {item: item, admin: 1, partial:"inventory-scripts"});
+        }
     }).catch((err) => {
     	res.status(404).json({error: err});
     });
