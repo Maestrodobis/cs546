@@ -8,6 +8,7 @@ const userMethods = require('./utilities/userMethods');
 const bcrypt = require('bcrypt');
 const Handlebars = require('handlebars');
 const path = require('path');
+const seed = require('./tasks/seed');
 
 const saltRounds = 4;
 
@@ -97,4 +98,7 @@ app.use('/users', users);
 
 app.listen(3000, () => {
     console.log("Server running on http://localhost:3000");
-});
+}); 
+
+//Seed the database
+seed();
