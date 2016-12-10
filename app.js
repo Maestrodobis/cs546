@@ -18,6 +18,7 @@ var index = require('./routes/index');
 var login = require('./routes/login');
 var priv = require('./routes/priv');
 var users = require('./routes/users');
+var items = require('./routes/items');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -97,6 +98,7 @@ app.use('/', index);
 app.use('/login', login);
 app.use('/private', priv);
 app.use('/users', users);
+app.use('/items', items);
 
 app.listen(3000, () => {
     console.log("Server running on http://localhost:3000");
