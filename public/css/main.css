@@ -1,0 +1,43 @@
+body {
+    background: #A0A0A0;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 12pt;
+}
+
+main {
+    max-width: 100%;
+    margin: auto;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+.formGroup {
+    padding-bottom: 5px;
+}
+
+#errorContainer {
+    border-radius: 5px;
+    padding:12px;
+    width:500px;
+    background-color: #00FF00;
+    box-sizing: border-box;
+}
+
+h1 {
+    margin-left: auto;
+}
+
+.dataBox {
+    background-color: #FFFF00;
+    margin:5px;
+    padding: 20px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    width: 75%;
+}
