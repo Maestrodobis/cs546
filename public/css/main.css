@@ -13,6 +13,14 @@ form {
     margin-bottom: 20px;
 }
 
+table{
+    border-collapse:collapse;
+}
+
+h1 {
+    margin-left: auto;
+}
+
 .hidden {
     display: none;
 }
@@ -29,10 +37,6 @@ form {
     box-sizing: border-box;
 }
 
-h1 {
-    margin-left: auto;
-}
-
 .dataBox {
     background-color: #FFFF00;
     margin:5px;
@@ -40,4 +44,25 @@ h1 {
     border-radius: 10px;
     box-sizing: border-box;
     width: 75%;
+}
+
+.itemRow:hover {
+    background-color: #dddddd;
+}
+
+.itemRow td {
+    padding: 5px;
+}
+
+.deleteButton {
+    height: 30px;
+    width: 64px;
+    border-style: none;
+    border-radius: 4px;
+}
+
+.deleteButton:hover {
+    background-color: #DD0022;
+    color:white;
+
 }
