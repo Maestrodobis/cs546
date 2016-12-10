@@ -7,8 +7,12 @@
 </head>
 <body>
     <main>
+        <h1>Inventory Manager</h1>
         {{{body}}}
     </main>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    {{#if partial}}
+        {{> (lookup . 'partial') }}
+    {{/if}}
 </body>
 </html>

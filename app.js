@@ -81,7 +81,10 @@ const handlebarsInstance = exphbs.create({
 
             return new Handlebars.SafeString(JSON.stringify(obj));
         }
-    }
+    },
+     partialsDir: [
+        'views/partials/'
+    ]
 });
 
 
