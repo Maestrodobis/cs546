@@ -6,6 +6,9 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 const userMethods = require('./utilities/userMethods');
 const bcrypt = require('bcrypt');
+const Handlebars = require('handlebars');
+const path = require('path');
+
 const saltRounds = 4;
 
 const app = express();
@@ -64,6 +67,27 @@ passport.use(new LocalStrategy({
             });
     }
 ));
+
+const exphbs = require('express-handlebars');
+
+
+const handlebarsInstance = exphbs.create({
+    defaultLayout: 'main',
+    // Specify helpers which are only registered on this instance.
+    helpers: {
+        asJSON: (obj, spacing) => {
+            if (typeof spacing === "number")
+                return new Handlebars.SafeString(JSON.stringify(obj, null, spacing));
+
+            return new Handlebars.SafeString(JSON.stringify(obj));
+        }
+    }
+});
+
+
+app.engine('handlebars', handlebarsInstance.engine);
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'handlebars');
 
 app.use('/public', express.static(__dirname + "/public"));
 app.use('/', index);
