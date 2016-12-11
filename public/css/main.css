@@ -67,7 +67,7 @@ h1 {
     display:none;
 }
 
-#userAttrList {
+/*#userAttrList {
     list-style: none;
 }
 
@@ -77,6 +77,21 @@ h1 {
 }
 
 #userAttrList li p {
+    display:inline-block;
+    margin-left: 10px;
+    font-size: 20px;
+}*/
+
+.attrList {
+    list-style: none;
+}
+
+.attrList li h2 {
+    display:inline-block;
+    font-size: 24px;
+}
+
+.attrList li p {
     display:inline-block;
     margin-left: 10px;
     font-size: 20px;
