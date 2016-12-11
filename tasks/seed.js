@@ -31,7 +31,7 @@ const seedUsers = [
     {
         "username":"superWizard2000",
         "firstName":"Gandolf",
-        "lastName":"Grey",
+        "lastName":"The Grey",
         "password":"$2a$04$Fvp1Udr/5BX0sWVakNuFy.P82Ngd7gqiwfye7PaHp4mkifT66oBSO", //password
         "roles":"employee"
     },
