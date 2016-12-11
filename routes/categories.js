@@ -11,7 +11,8 @@ const categoryMethods = require('../utilities/categoryMethods');
 
 router.get('/', (req, res) => {
     categoryMethods.getAllCategories().then((categories) => {
-    	res.status(200).json(categories);
+		console.log(categories);
+		res.render("pages/categories",{"categories":categories});
     }).catch((err) => {
     	res.status(500).json({error: err});
     });
@@ -44,3 +45,5 @@ router.post('/add', (req, res) => {
 
 
 });
+
+module.exports = router;
