@@ -17,7 +17,7 @@
         </li>
         <li>
             <h2>Price</h2>
-            <p id="priceField">{{item.price}}</p>
+            <p id="priceField">${{item.price}}</p>
             {{#if admin}}
             {{!--<button id="priceEditButton">edit</button>--}}
             <input id="priceInput" class="hidden" min="0" step=".01" type="number" value={{item.price}}></input>
@@ -41,11 +41,11 @@
     </ul>  
     <button id="itemUpdateButton" class="hidden">Update Item</button>
     {{#if admin}}
-        <div class="hidden" id="itemId" value={{item._id}}></div>
+        <p class="hidden" id="itemId">{{item._id}}</p>
         <button class="deleteButton" id="deleteItem">Delete Item</button>
     {{/if}}
     <div class="hidden" id="confirmDeleteWrapper">
-            <p>Delete Item {{item.name}}?</p>
+            <p>Update Item {{item.name}}?</p>
             <button id="confirmDeleteButton">Confirm</button>
             <button id="cancelDeleteButton">Cancel</button>
     </div>
@@ -54,4 +54,7 @@
             <button id="confirmUpdateButton">Confirm</button>
             <button id="cancelUpdateButton">Cancel</button>
     </div>
+    <div class="hidden" id="errorContainer">
+            <div id="errorText">{{error}}</div>
+    </div> 
 </article>
