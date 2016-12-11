@@ -46,7 +46,7 @@ router.get('/:username', authenticate, (req, res) => {
     userMethods.getUserByUsername(req.params.username)
         .then( (user) => {
             delete user.password;
-            res.render("pages/user", {"user":user});
+            res.render("pages/user", {"user":user,partial:"user-scripts"});
         })
         .catch( (err) => {
             console.log(err);
@@ -70,20 +70,27 @@ router.post('/add', authenticate, (req, res) => {
     var user = {
         username: req.body.username,
         password: req.body.password,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
         roles: req.body.roles
     };
 
     console.log(user);
-
-    userMethods.addUser(user)
+    userMethods.getUserByUsername(user.username)
+    .then(function(foundUser){
+        res.json({error:"User with username "+foundUser.username+" already exists"});
+    }).catch(function(error){
+            userMethods.addUser(user)
         .then( (newUser) => {
             console.log("Added user ", user.username);
             res.send(newUser);
         })
         .catch( (err) => {
             console.log(err);
-            res.send(err);
+            res.json({error:err});
         });
+    });
+
 });
 
 /**
@@ -114,6 +121,30 @@ router.put('/update/:username', authenticate, (req, res) => {
     userMethods.updateUser(req.params.username, propsToUpdate)
         .then( (updatedUser) => {
             res.send(updatedUser);
+        })
+        .catch( (err) => {
+            console.log(err);
+            res.send(err);
+        });
+});
+
+
+/**
+ * @route("/users/delete/:username")
+ * @method("DELETE")
+ *
+ * Deletes the user given by the username.
+ */
+router.delete('/delete/:username', authenticate, (req, res) => {
+    // Ensure that the user is an admin.
+    if (req.user.roles.indexOf("admin") == -1) {
+        res.send("Not authorized to add user");
+        return;
+    }
+
+    userMethods.deleteUser(req.params.username)
+        .then( (updatedUser) => {
+            res.status(200).json({status:"OK"});
         })
         .catch( (err) => {
             console.log(err);

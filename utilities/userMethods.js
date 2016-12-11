@@ -52,7 +52,7 @@ let exportedMethods = {
         return new Promise( (resolve, reject) => {
             
             // console.log(user);
-
+            
             users()
                 .then( (userCollection) => {
                     userCollection
@@ -114,11 +114,15 @@ let exportedMethods = {
 
     deleteUser(username) {
         if (!username) return Promise.reject("No username provided!");
-        return users().then((userCollection) => {
-            return userCollection.removeOne({ _id: id}).then((deletionInfo) => {
-                if(deletionInfo.deletedCount === 0) throw ("Could not delete user with username of " + username + ".");
+        return this.getUserByUsername(username).then(function(user){
+            return users().then((userCollection) => {
+                return userCollection.removeOne({ _id: user._id}).then((deletionInfo) => {
+                    if(deletionInfo.deletedCount === 0) throw ("Could not delete user with username of " + username + ".");
+                });
             });
-        });
+        }).catch(function(error){
+            return Promise.reject(error);
+        }); 
     },
 };
 

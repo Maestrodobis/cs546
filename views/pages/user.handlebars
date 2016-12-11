@@ -1,3 +1,19 @@
 <article>
-    <h1>{{username}}</h1>
+    <h1>{{user.firstName}} {{user.lastName}}</h1>
+    <ul id="userAttrList">
+        <li>
+            <h2>Username</h2>
+            <p id="username">{{user.username}}</p>
+        </li>
+        <li>
+            <h2>Roles</h2>
+            <p>{{user.roles}}</p>
+        </li>
+    </ul>
+    <button class="deleteButton" id="deleteUser">Delete User</button>
+    <div class="hidden" id="confirmDeleteWrapper">
+        <p>Delete user {{user.username}}?</p>
+        <button id="confirmButton">Confirm</button>
+        <button id="cancelButton">Cancel</button>
+    </div>
 </article>
