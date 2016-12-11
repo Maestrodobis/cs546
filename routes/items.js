@@ -97,6 +97,65 @@ router.post('/add', authenticate, (req, res) => {
     });
  });
 
+router.put('/update/:id', authenticate, (req, res) => {
+    
+    let removeUndefined = (properties) => {
+        Object.keys(properties).forEach( (key) => {
+            if (properties[key] === undefined) {
+                delete properties[key];
+            }
+        });
+    }
+
+    let date = new Date();
+
+    let timestamp = date.getMonth() + "/" + date.getDay() + "/" + date.getFullYear() + " @ " 
+    + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+
+    var propsToUpdate = {
+        name: req.body.itemName,
+        description: req.body.description,
+        quantity: req.body.itemQuantity,
+        price: req.body.price,
+        category: req.body.category,
+        lastUpdatedBy: req.user.username,
+        lastUpdateTime: timestamp
+
+    };
+
+    if (req.user.roles.indexOf("admin") == -1) {
+        //user can only update quantity
+        if (propsToUpdate.name) delete propsToUpdate.name;
+        if (propsToUpdate.description) delete propsToUpdate.description;
+        if (propsToUpdate.price) delete propsToUpdate.price;
+        if (propsToUpdate.category) delete propsToUpdate.category;
+
+        deleteUndefined(propsToUpdate);
+
+        itemMethods.updateItemById(req.params.id, propsToUpdate)
+        .then( (updatedItem) => {
+            res.send(updatedItem);
+        })
+        .catch( (err) => {
+            console.log(err);
+            res.send(err);
+        });
+        return;
+    }
+
+    // Delete any properties that are undefined (don't want to update those)
+    deleteUndefined(propsToUpdate);
+
+    itemMethods.updateItemById(req.params.id, propsToUpdate)
+        .then( (updatedItem) => {
+            res.send(updatedItem);
+        })
+        .catch( (err) => {
+            console.log(err);
+            res.send(err);
+        });
+});
+
 router.delete('/:id', authenticate, (req, res) => {
 
 	if (req.user.roles.indexOf("admin") == -1) {
