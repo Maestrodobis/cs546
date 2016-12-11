@@ -1,32 +1,57 @@
 <article class="item">
-    <h1 class ="itemName" >{{item.name}}</h1>
-        <p class = "category">{{item.category}}</p>
-        <p class = "quantity"> {{item.quantity}}</p>
-        <p class = "price">${{item.price}}</p>
-        <p class = "description">{{item.description}}</p>     
-    <form id="updateItemForm">
+    <h1 class ="itemName" id="nameField" >{{item.name}}</h1>
+    {{#if admin}}
+    <button id="itemEdit">edit</button>
+    <input id="nameInput" type="text" value={{item.name}} class="hidden"></input>
+    {{!--<button id="nameUpdateButton" class="hidden">update</button>--}}
+    {{/if }}
+    <ul id="itemAttrList" class="attrList">
+        <li>
+            <h2>Category</h2>
+            <p id="categoryField">{{item.category}}</p>
             {{#if admin}}
-            <div class="formGroup">
-                <label for="name">Name</label>
-                <input name="name" id="name" type="text" placeholder="item name"/>
-            </div>
-            <div class="formGroup">
-                <label for="category">Category</label>
-                <input name="category" id="category" type="text" placeholder="clothing, kitchenware, electronics, etc."/>
-            </div>
-            <div class="formGroup">
-                <label for="price">Price</label>
-                <input name="price" id="price" min ="0" step=".01" type="number" placeholder="0.00"/>
-            </div>
-            <div class="formGroup">
-                <label for="description">Description</label>
-                <textarea  id="description" name="description"></textarea>
-            </div>
+            {{!--<button id="categoryEditButton">edit</button>--}}
+            <input id="categoryInput" type="text" value={{item.category}} class="hidden"></input>
+            {{!--<button id="categoryUpdateButton" class="hidden">update</button>--}}
+            {{/if }}
+        </li>
+        <li>
+            <h2>Price</h2>
+            <p id="priceField">{{item.price}}</p>
+            {{#if admin}}
+            {{!--<button id="priceEditButton">edit</button>--}}
+            <input id="priceInput" class="hidden" min="0" step=".01" type="number" value={{item.price}}></input>
+            {{!--<button id="priceUpdateButton" class="hidden">update</button>--}}
             {{/if}}
-            <div class="formGroup">
-                <label for="quantity">Quantity</label>
-                <input name="quantity" id="quantity" min ="0" type="number" placeholder="0"/>
-            </div>
-            <input type="submit"/>
-    </form>      
+        </li>
+        <li>
+            <h2>Quantity</h2>
+            <p id="quantityField">{{item.quantity}}</p>
+            {{!--<button id="quantityEditButton">edit</button>--}}
+            <input id="quantityInput" type="number" min="0" class="hidden" value={{item.quantity}}></input>
+            {{!--<button id="quantityUpdateButton" class="hidden">update</button>--}}
+        </li>
+        <li class="description-attr">
+            <h2>Description</h2>
+            <p id="descriptionField">{{item.description}}</p>
+            {{!--<button id="descriptionEditButton">edit</button>--}}
+            <textarea  id="descriptionInput" class="hidden">{{item.description}}</textarea>
+            {{!--<button id="descriptionUpdateButton" class="hidden">update</button>--}}
+        </li>
+    </ul>  
+    <button id="itemUpdateButton" class="hidden">Update Item</button>
+    {{#if admin}}
+        <div class="hidden" id="itemId" value={{item._id}}></div>
+        <button class="deleteButton" id="deleteItem">Delete Item</button>
+    {{/if}}
+    <div class="hidden" id="confirmDeleteWrapper">
+            <p>Delete Item {{item.name}}?</p>
+            <button id="confirmDeleteButton">Confirm</button>
+            <button id="cancelDeleteButton">Cancel</button>
+    </div>
+    <div class="hidden" id="confirmUpdateWrapper">
+            <p>Delete Item {{item.name}}?</p>
+            <button id="confirmUpdateButton">Confirm</button>
+            <button id="cancelUpdateButton">Cancel</button>
+    </div>
 </article>

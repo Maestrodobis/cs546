@@ -38,9 +38,9 @@ router.get('/:itemName', (req, res) => {
     
     itemMethods.getItemByName(req.params.itemName).then((item) => {
     	if (req.user.roles.indexOf("admin") == -1) {
-            res.render("pages/item", {item: item, admin: 0, partial:"inventory-scripts"});
+            res.render("pages/item", {item: item, admin: 0, partial:"item-scripts"});
         } else{
-            res.render("pages/item", {item: item, admin: 1, partial:"inventory-scripts"});
+            res.render("pages/item", {item: item, admin: 1, partial:"item-scripts"});
         }
     }).catch((err) => {
     	res.status(404).json({error: err});
@@ -90,8 +90,10 @@ router.post('/add', authenticate, (req, res) => {
         lastUpdateTime: timestamp
     };
 
+    console.log(item);
+    
     itemMethods.addItem(item).then((newItem) => {
-    	res.status(200).json(newItem);
+    	res.send(newItem);
     }).catch((err) => {
     	res.status(500).json({ error: err});
     });
