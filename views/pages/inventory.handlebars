@@ -8,9 +8,11 @@
 <article class="inventory">
         
         <h1>Your inventory</h1>
-        <form>
-            <input type="text" name="searchItem" placeholder="Search for item...">
+        <form >
+            <input id="searchBar" type="text" name="searchItem" placeholder="Search for item...">
+            <input id="submitSearch" type="submit" value="Search"/>
         </form>
+        <p id="searchResponse" class="hidden"></p>
         <table class="table" id="itemTable">
             <thead>
             <tr>
