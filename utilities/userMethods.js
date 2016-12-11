@@ -48,6 +48,7 @@ let exportedMethods = {
         if (!user.firstName) return Promise.reject("No firstName provided!");
         if (!user.lastName) return Promise.reject("No lastName provided!");
         if (!user.roles) return Promise.reject("No role provided");
+
         //check for uniqueness of username needed
         return new Promise( (resolve, reject) => {
             

@@ -1,6 +1,8 @@
 const express = require('express');
 var router = express.Router();
 const userMethods = require('../utilities/userMethods');
+const bcrypt = require('bcrypt');
+const salt = 4;
 
 /**
  * @route("/users")
@@ -76,6 +78,10 @@ router.post('/add', authenticate, (req, res) => {
     };
 
     console.log(user);
+
+    //Create hash for recieved password
+    user.password = bcrypt.hashSync(user.password, salt);
+
     userMethods.getUserByUsername(user.username)
     .then(function(foundUser){
         res.json({error:"User with username "+foundUser.username+" already exists"});
