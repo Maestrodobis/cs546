@@ -6,6 +6,7 @@
         <p class = "description">{{item.description}}</p>     
     <form id="updateItemForm">
             {{#if admin}}
+            <h2>Update Item</h2>
             <div class="formGroup">
                 <label for="name">Name</label>
                 <input name="name" id="name" type="text" placeholder="item name"/>
@@ -28,5 +29,14 @@
                 <input name="quantity" id="quantity" min ="0" type="number" placeholder="0"/>
             </div>
             <input type="submit"/>
-    </form>      
+    </form>
+    {{#if admin}}
+        <div class="hidden" id="itemId" value={{item._id}}></div>
+        <button class="deleteButton" id="deleteItem">Delete Item</button>
+    {{/if}}
+    <div class="hidden" id="confirmDeleteWrapper">
+            <p>Delete user {{item.name}}?</p>
+            <button id="confirmButton">Confirm</button>
+            <button id="cancelButton">Cancel</button>
+    </div>
 </article>
