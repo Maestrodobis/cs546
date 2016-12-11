@@ -38,6 +38,8 @@ let exportedMethods = {
 		if (!item.quantity) return Promise.reject("No item quantity provided!");
 		if (!item.price) return Promise.reject("No item price provided!");
 		if (!item.category) return Promise.reject("No item category provided!");
+		//checking for an existing item with the same name:
+
 		return items().then((itemCollection) => {
 			return itemCollection.insertOne(item).then((newItemInfo) => {
 				return newItemInfo.insertedId;
@@ -48,14 +50,29 @@ let exportedMethods = {
 	},
 
 	updateItem(id, updateData) {
-		//users can update quantity only
-		//admins can update anything except 
+		if (!id) return Promise.reject("No item id provided!");
+		if (!updateData) return Promise.reject("No update data provided!");
+		return items().then((itemCollection) => {
+			return itemCollection.updateOne({ _id: id }, {updateData}).then((deletionInfo) => {
+				if (deletionInfo.deletedCount === 0) {
+					throw ("Could not update item with id of " + id.toString() + "!");
+				}
+				return this.getItembyId;
+			});
+		});
 	},
 
 	deleteItemById(id) {
 		if (!id) return Promise.reject("No id provided!");
-		return items().then((itemCollection) => {
-		});
+        return this.getItemById(id).then(function(item){
+            return items().then((itemCollection) => {
+                return itemCollection.removeOne({ _id: id}).then((deletionInfo) => {
+                    if(deletionInfo.deletedCount === 0) throw ("Could not delete item with id of " + id + ".");
+                });
+            });
+        }).catch(function(error){
+            return Promise.reject(error);
+        });
 	}
 }
 
