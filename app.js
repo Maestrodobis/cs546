@@ -100,6 +100,10 @@ app.use('/private', priv);
 app.use('/users', users);
 app.use('/items', items);
 
+app.use("*", (req, res) => {
+        res.sendStatus(404);
+    });
+
 app.listen(3000, () => {
     console.log("Server running on http://localhost:3000");
 
