@@ -35,7 +35,6 @@ router.get('/', (req, res) => {
  * Finds a single item by name and returns a single item.
  */
 router.get('/:itemName', (req, res) => {
-    
     itemMethods.getItemByName(req.params.itemName).then((item) => {
     	if (req.user.roles.indexOf("admin") == -1) {
             res.render("pages/item", {item: item, admin: 0, partial:"item-scripts"});

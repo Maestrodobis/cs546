@@ -6,7 +6,7 @@
     var submitForm = $("#submitForm");
     var errorContainer = $("#errorContainer");
     var errorText = $("#errorText");
-
+    var searchSubmit = $("#submitSearch");
     //Iterate through rows
     itemRows.each(function(i){
         itemRows[i].onclick = function(){
@@ -14,6 +14,33 @@
             var itemName = $(itemRows[i]).children(":first").text();
             window.location.href = "/items/"+itemName;
         };
+    });
+
+    searchSubmit.click(function(){
+        var searchVal = $("#searchBar").val();
+        console.log(searchVal);
+
+        //Make request to delete user
+        var requestConfig = {
+            method: "Get",
+            url: "/items/"+searchVal,
+            contentType: 'application/json',
+            error:function(){
+                $("#searchResponse").removeClass("hidden");
+                $("#searchResponse").text("Could not find item");
+            }
+        };
+
+        $.ajax(requestConfig).then(function (responseMessage){
+            console.log(responseMessage);
+            //If we got a response populate the page
+            if( responseMessage ){
+                window.location.href = "/items/"+searchVal;
+
+            }
+        });
+        
+        return false;
     });
 
     submitForm.click(function(){
