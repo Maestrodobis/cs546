@@ -7,7 +7,10 @@
         </li>
         <li>
             <h2>Roles</h2>
-            <p>{{user.roles}}</p>
+            <p id="rolesField">{{user.roles}}</p>
+            <button id="rolesEditButton">edit</button>
+            <input id="rolesInput" class="hidden"></input>
+            <button id="rolesUpdateButton" class="hidden">update</button>
         </li>
     </ul>
     <button class="deleteButton" id="deleteUser">Delete User</button>
