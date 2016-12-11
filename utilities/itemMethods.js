@@ -48,7 +48,16 @@ let exportedMethods = {
 	},
 
 	updateItem(id, updateData) {
-		//users can update quantity only
+		if (!id) return Promise.reject("No item id provided!");
+		if (!updateData) return Promise.reject("No update data provided!");
+		return items().then((itemCollection) => {
+			return itemCollection.updateOne({ _id: id }, {updateData}).then((deletionInfo) => {
+				if (deletionInfo.deletedCount === 0) {
+					throw ("Could not update item with id of " + id.toString() + "!");
+				}
+				return this.getItembyId;
+			});
+		});//users can update quantity only
 		//admins can update anything except 
 	},
 

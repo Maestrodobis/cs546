@@ -102,7 +102,7 @@ router.post('/add', authenticate, (req, res) => {
 router.put('/update/:username', authenticate, (req, res) => {
     // Ensure that the user is an admin.
     if (req.user.roles.indexOf("admin") == -1) {
-        res.send("Not authorized to add user");
+        res.send("Not authorized to update user");
         return;
     }
 
