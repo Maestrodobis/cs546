@@ -2,7 +2,8 @@ body {
     background: #FEFEFE;
     font-family: Helvetica, Cambria, "Times New Roman", Times, serif;
     font-size: 12pt;
-    padding:0;
+    padding:20px;
+    padding-top:0;
     margin:0;
 }
 
@@ -71,8 +72,8 @@ h1 {
 
 #navBar {
     width:100%;
-    height:64px;
-    background-color: #dddddd;
+    height:60px;
+    background-color: #282828;
     padding:0;
     margin:0;
 }
@@ -86,17 +87,18 @@ h1 {
 
 #navBar a {
     display: inline-block;
-    width:128px;
-    height:64px;
-    float:right;
+    margin:6px;
+    width:112px;
+    height:48px;
+    /*float:right;*/
     text-align: center;
     vertical-align: center;
     text-decoration: none;
-    color:black;
+    color:white;
 }
 
 #navBar a:hover {
-    background-color: #cccccc;
+    background-color: #555555;
 }
 
 /*#userAttrList {
@@ -127,4 +129,19 @@ h1 {
     display:inline-block;
     margin-left: 10px;
     font-size: 20px;
+}
+
+#title h1 {
+    
+    display: inline-block;
+}
+
+#inventoryTitle {
+    font-size: 50px;
+    color:black;
+}
+
+#managerTitle {
+    font-size: 50px;
+    color:#888888;
 }
