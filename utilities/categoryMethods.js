@@ -65,8 +65,8 @@ let exportedMethods = {
         });
 
 	},
-	
-	updateCategoryById(id) {
+
+	updateCategoryById(id, updateData) {
 
 	}
 
