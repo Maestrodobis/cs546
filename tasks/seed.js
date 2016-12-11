@@ -72,14 +72,7 @@ const seedItems = [
         "quantity": 99999,
         "price": 0.01,
         "category": "bees"
-    },
-    {
-        "name": "Dank Kush",
-        "description": "top quality guaranteed to get you blazed",
-        "quantity": 420,
-        "price": 4.20,
-        "category": "pharmaceuticals"
-    },
+    }
 ]
 
 module.exports = function(){
