@@ -1,9 +1,19 @@
+<div id="navBar">
+    <a href="/items">Inventory</a>
+    {{#if admin}}
+        <a href="/users">Users</a>
+    {{/if}}
+    <a href="/login/logout">Logout</a>
+</div>
 <article class="inventory">
+        
         <h1>Your inventory</h1>
-        <form>
-            <input type="text" name="searchItem" placeholder="Search for item...">
+        <form >
+            <input id="searchBar" type="text" name="searchItem" placeholder="Search for item...">
+            <input id="submitSearch" type="submit" value="Search"/>
         </form>
-        <table class="table" id="localstorage-data">
+        <p id="searchResponse" class="hidden"></p>
+        <table class="table" id="itemTable">
             <thead>
             <tr>
                 <th>Name</th>
@@ -14,20 +24,19 @@
             </thead>
             <tbody>
                 {{#each items}}
-                    <tr data-href="/" class="itemRow">
+                    <tr class="itemRow">
                         <td>{{name}}</td>
                         <td>{{category}}</td>
                         <td>${{price}}</td>
                         <td>{{quantity}}</td>
-                        {{#if admin}}
-                            <td><button type="submit" value="{{_id}}" id="deletebuttons">Delete</button></td>
-                        {{/if}}
                     </tr>
                 {{/each}}
             </tbody>
         </table>
+
         {{#if admin}}
-        <form action="/items/add" method="post">
+        <h2>Add Item</h2>
+        <form id="addItemForm">
             <div class="formGroup">
                 <label for="itemName">Name</label>
                 <input name="itemName" id="itemName" type="text" placeholder="item name"/>
@@ -48,12 +57,10 @@
                 <label for="price">Price</label>
                 <input name="price" id="price" min ="0" step=".01" type="number" placeholder="0.00"/>
             </div>
-            <input type="submit"/>
+            <input id="submitForm" type="submit" value="Add Item"/>
         </form>
         {{/if}}
-    {{#if error}}
-        <div id="errorContainer">
+        <div class="hidden" id="errorContainer">
             <div id="errorText">{{error}}</div>
-        </div>
-    {{/if}}   
+        </div>   
 </article>

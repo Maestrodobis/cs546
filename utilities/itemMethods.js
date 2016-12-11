@@ -3,7 +3,7 @@ const uuid = require('node-uuid');
 
 let exportedMethods = {
 
-	getItembyId(id) {
+	getItemById(id) {
 		if(!id) return Promise.reject("No item id has been specified!");
 		return items().then((itemCollection) => {
 			return itemCollection.findOne( { _id: id} ).then((item) => {
