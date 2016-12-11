@@ -83,7 +83,6 @@
 
     confirmUpdate.click(function(){
         try{      
-            console.log("hrey");
             var itemName = $("#nameInput");
             var category = $("#categoryInput");
             var description = $("#descriptionInput");
