@@ -1,6 +1,5 @@
 //admin operations ONLY
-
-const users = require('../mongoCollections').users;
+const categories = require('../mongoCollections').categories;
 const uuid = require('node-uuid');
 
 
@@ -65,8 +64,8 @@ let exportedMethods = {
         });
 
 	},
-	
-	updateCategoryById(id) {
+
+	updateCategoryById(id, updateData) {
 
 	}
 
