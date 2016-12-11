@@ -3,7 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 
 router.post('/', passport.authenticate('local', {
-    failureRedirect: '/'
+    failureRedirect: '/?loginError=badLogin'
 }), (req, res) => {
     res.redirect('/items');
 });

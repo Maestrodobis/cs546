@@ -1,7 +1,5 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/home/brian/.nvm/versions/node/v6.9.2/bin/node',
-1 verbose cli   '/home/brian/.nvm/versions/node/v6.9.2/bin/npm',
-1 verbose cli   'start' ]
+1 verbose cli [ '/usr/bin/nodejs', '/usr/bin/npm', 'start' ]
 2 info using npm@3.10.9
 3 info using node@v6.9.2
 4 verbose run-script [ 'prestart', 'start', 'poststart' ]
@@ -9,25 +7,25 @@
 6 silly lifecycle cs546@1.0.0~prestart: no script for prestart, continuing
 7 info lifecycle cs546@1.0.0~start: cs546@1.0.0
 8 verbose lifecycle cs546@1.0.0~start: unsafe-perm in lifecycle true
-9 verbose lifecycle cs546@1.0.0~start: PATH: /home/brian/.nvm/versions/node/v6.9.2/lib/node_modules/npm/bin/node-gyp-bin:/mnt/c/Users/lenovo/Documents/cgomez/cs546/cs546/node_modules/.bin:/home/brian/.nvm/versions/node/v6.9.2/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
-10 verbose lifecycle cs546@1.0.0~start: CWD: /mnt/c/Users/lenovo/Documents/cgomez/cs546/cs546
+9 verbose lifecycle cs546@1.0.0~start: PATH: /usr/lib/node_modules/npm/bin/node-gyp-bin:/home/ian/Documents/cs546/cs546-master/node_modules/.bin:/home/ian/bin:/home/ian/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+10 verbose lifecycle cs546@1.0.0~start: CWD: /home/ian/Documents/cs546/cs546-master
 11 silly lifecycle cs546@1.0.0~start: Args: [ '-c', 'node app.js' ]
 12 silly lifecycle cs546@1.0.0~start: Returned: code: 1  signal: null
 13 info lifecycle cs546@1.0.0~start: Failed to exec start script
 14 verbose stack Error: cs546@1.0.0 start: `node app.js`
 14 verbose stack Exit status 1
-14 verbose stack     at EventEmitter.<anonymous> (/home/brian/.nvm/versions/node/v6.9.2/lib/node_modules/npm/lib/utils/lifecycle.js:255:16)
+14 verbose stack     at EventEmitter.<anonymous> (/usr/lib/node_modules/npm/lib/utils/lifecycle.js:255:16)
 14 verbose stack     at emitTwo (events.js:106:13)
 14 verbose stack     at EventEmitter.emit (events.js:191:7)
-14 verbose stack     at ChildProcess.<anonymous> (/home/brian/.nvm/versions/node/v6.9.2/lib/node_modules/npm/lib/utils/spawn.js:40:14)
+14 verbose stack     at ChildProcess.<anonymous> (/usr/lib/node_modules/npm/lib/utils/spawn.js:40:14)
 14 verbose stack     at emitTwo (events.js:106:13)
 14 verbose stack     at ChildProcess.emit (events.js:191:7)
 14 verbose stack     at maybeClose (internal/child_process.js:877:16)
 14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
 15 verbose pkgid cs546@1.0.0
-16 verbose cwd /mnt/c/Users/lenovo/Documents/cgomez/cs546/cs546
-17 error Linux 3.4.0+
-18 error argv "/home/brian/.nvm/versions/node/v6.9.2/bin/node" "/home/brian/.nvm/versions/node/v6.9.2/bin/npm" "start"
+16 verbose cwd /home/ian/Documents/cs546/cs546-master
+17 error Linux 4.4.0-53-generic
+18 error argv "/usr/bin/nodejs" "/usr/bin/npm" "start"
 19 error node v6.9.2
 20 error npm  v3.10.9
 21 error code ELIFECYCLE
