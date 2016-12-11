@@ -49,10 +49,11 @@ let exportedMethods = {
 		});
 	},
 
-	updateItem(id, updateData) {
+	updateItemById(id, updateData) {
 		if (!id) return Promise.reject("No item id provided!");
 		if (!updateData) return Promise.reject("No update data provided!");
 		return items().then((itemCollection) => {
+			console.log(id);
 			return itemCollection.updateOne({ _id: id }, {updateData}).then((deletionInfo) => {
 				if (deletionInfo.deletedCount === 0) {
 					throw ("Could not update item with id of " + id.toString() + "!");

@@ -12,19 +12,27 @@ const itemMethods = require('../utilities/itemMethods');
 //if and when we implement departments for users we may need to do some check here so users can only see/edit items in their department
 
 router.get('/', (req, res) => {
-    itemMethods.getAllItems().then((items) => {
-    	// res.status(200).json(items);
-        console.log(items);
-        if (req.user.roles.indexOf("admin") == -1) {
-            console.log(items);
-            res.render("pages/inventory", {items: items, admin: 0, partial:"inventory-scripts" });
-        } else{
-            console.log(items);
-            res.render("pages/inventory", {items: items, admin: 1, partial:"inventory-scripts"});
+    if(req.user){
+        itemMethods.getAllItems().then((items) => {
+            if (req.user.roles.indexOf("admin") == -1) {
+                console.log(items);
+                res.render("pages/inventory", {items: items, admin: 0, partial:"inventory-scripts" });
+            } else{
+                console.log(items);
+                res.render("pages/inventory", {items: items, admin: 1, partial:"inventory-scripts"});
+            }
+        }).catch( (err) => {
+            res.status(404).json({error: err});
+        });
+    } else {
+        var loginError = false;
+        if(req.query.loginError == "badLogin" )
+        {
+            loginError = "You have submitted an incorrect username or password.  Please try again.";
         }
-    }).catch( (err) => {
-    	res.status(404).json({error: err});
-    });
+        res.render("pages/login",{"error":loginError});
+    }
+    
 });
 
 
@@ -36,6 +44,7 @@ router.get('/', (req, res) => {
  */
 router.get('/:itemName', (req, res) => {
     itemMethods.getItemByName(req.params.itemName).then((item) => {
+        console.log(item);
     	if (req.user.roles.indexOf("admin") == -1) {
             res.render("pages/item", {item: item, admin: 0, partial:"item-scripts"});
         } else{
@@ -52,8 +61,7 @@ router.get('/:itemName', (req, res) => {
  *
  * Finds a single item by id and returns a single item.
  */
-router.get('/:id', (req, res) => {
-    
+router.get('/:id', (req, res) => { 
     itemMethods.getItemById(req.params.id).then((item) => {
     	res.status(200).json(item);
     }).catch((err) => {
@@ -100,6 +108,7 @@ router.post('/add', authenticate, (req, res) => {
 
 router.put('/update/:id', authenticate, (req, res) => {
     
+    console.log(req.params.id);
     let removeUndefined = (properties) => {
         Object.keys(properties).forEach( (key) => {
             if (properties[key] === undefined) {
@@ -110,6 +119,7 @@ router.put('/update/:id', authenticate, (req, res) => {
 
     let date = new Date();
 
+    
     let timestamp = date.getMonth() + "/" + date.getDay() + "/" + date.getFullYear() + " @ " 
     + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
 
@@ -157,21 +167,23 @@ router.put('/update/:id', authenticate, (req, res) => {
         });
 });
 
-router.delete('/:id', authenticate, (req, res) => {
+router.delete('/:itemName', authenticate, (req, res) => {
 
 	if (req.user.roles.indexOf("admin") == -1) {
     	res.send("Not authorized to delete an item!");
     	return;
     }
 
-    let getItem = itemMethods.getItemById(req.params.id);
+    console.log(req.params.itemName);
+    let getItem = itemMethods.getItemByName(req.params.itemName);
 
-    getItem.then(() => {
-    	return itemMethods.deleteItemById(req.params.id).then(() => {
-    		res.status(200);
-    	}).catch((err) => {
-    		res.status(500).json({error: err});
-    	});
+    getItem.then((item) => {
+        console.log(item._id);
+    	return itemMethods.deleteItemById(item._id).then(() => {
+        res.status(200);
+    }).catch((err) => {
+        res.status(500).json({error: err});
+    });
     }).catch((err) => {
     	res.status(404).json({error: err});
     });
