@@ -1,6 +1,7 @@
 const express = require('express');
 var router = express.Router();
 const userMethods = require('../utilities/userMethods');
+const authenticate = require('../utilities/authenticate');
 const bcrypt = require('bcrypt');
 const salt = 4;
 

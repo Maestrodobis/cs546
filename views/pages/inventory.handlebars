@@ -1,6 +1,8 @@
 <div id="navBar">
-    <a href="/private/inventory">Inventory</a>
-    <a href="/users">Users</a>
+    <a href="/items">Inventory</a>
+    {{#if admin}}
+        <a href="/users">Users</a>
+    {{/if}}
     <a href="/login/logout">Logout</a>
 </div>
 <article class="inventory">

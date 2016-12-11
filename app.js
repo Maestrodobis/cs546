@@ -16,7 +16,6 @@ const app = express();
 /* Routes */
 var index = require('./routes/index');
 var login = require('./routes/login');
-var priv = require('./routes/priv');
 var users = require('./routes/users');
 var items = require('./routes/items');
 
@@ -96,7 +95,6 @@ app.set('view engine', 'handlebars');
 app.use('/public', express.static(__dirname + "/public"));
 app.use('/', index);
 app.use('/login', login);
-app.use('/private', priv);
 app.use('/users', users);
 app.use('/items', items);
 
